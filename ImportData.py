@@ -8,7 +8,7 @@ import csv
 import time
 
 date_fields = [50,59,85,86,110,121,122]
-eventlog = "HospitalLog.csv"
+eventlog = "Hospital Log.csv"
 
 
 
@@ -28,8 +28,11 @@ activities = []
 for row in logreader:
     row_temp = row
     for i in date_fields:
-        row_temp[i] = time.strptime(row_temp[i], "%Y-%m-%d %H:%M:%S")
+        data_temp = row_temp[i][:19]
+        if not data_temp == "":
+            row_temp[i] = time.strptime(data_temp, "%Y-%m-%dT%H:%M:%S")  #"%Y-%m-%d %H:%M:%S")
     activities.append(row)
 
+print ("Hello, here we inported files")
 
 
